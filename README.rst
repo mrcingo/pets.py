@@ -37,10 +37,17 @@ Installing
 Quick Example
 --------------
 
-Add correct examples on how to use this library.
+.. code:: py
+
+    import pets
+
+    giraffe = pets.Pet('giraffe')
+    test.set_name('special giraffe')
+    print(test.get_name())
+    # special giraffe
 
 Links
 ------
 
-- `Repository <https://github.com/mrcingo/cef.py>`_
+- `Repository <https://github.com/mrcingo/pets.py>`_
 - `PyBind11 <https://github.com/pybind/pybind11>`_
