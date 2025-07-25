@@ -1,0 +1,15 @@
+include README.rst
+include LICENSE
+include requirements.txt
+include pets/py.typed
+
+include pybind11/LICENSE
+
+global-include CMakeLists.txt *.cmake
+
+recursive-include pets/*.py
+recursive-include pets/*.pyi
+recursive-include pets/types *.pyi
+
+graft pybind11/include
+graft pybind11/tools

@@ -1,0 +1,79 @@
+[build-system]
+requires = [
+    "setuptools>=42",
+    "wheel",
+    "ninja",
+    "cmake>=3.12",
+    "typing_extensions>=4.3,<5",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pets.py"
+version = "0.0.1"
+description = "A Python example for pybind11"
+readme = { file = "README.rst", content-type = "text/x-rst" }
+license = { file = "LICENSE" }
+requires-python = ">=3.9"
+authors = [{ name = "mrcingo" }]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "License :: OSI Approved :: MIT License",
+    "Intended Audience :: Developers",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Internet",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Utilities",
+    "Typing :: Typed",
+]
+dynamic = ["dependencies"]
+
+[project.urls]
+Repository = "https://github.com/mrcingo/pets.py"
+"Issue tracker" = "https://github.com/mrcingo/pets.py/issues"
+
+[tool.setuptools.dynamic]
+dependencies = { file = "requirements.txt" }
+
+[tool.setuptools]
+packages = ["pets"]
+include-package-data = true
+
+[tool.black]
+line-length = 125
+skip-string-normalization = true
+
+[tool.coverage.run]
+omit = ["pets/types/*", "*/_types.py"]
+
+[tool.coverage.report]
+exclude_lines = ["pragma: no cover", "@overload"]
+
+[tool.isort]
+profile = "black"
+combine_as_imports = true
+combine_star = true
+line_length = 125
+
+[tool.pyright]
+include = ["pets", "pets/types"]
+exclude = ["**/__pycache__", "build", "dist", "docs"]
+reportUnnecessaryTypeIgnoreComment = "warning"
+reportUnusedImport = "error"
+pythonVersion = "3.9"
+typeCheckingMode = "basic"
+
+[tool.cibuildwheel]
+before-build = "rm -rf {project}/build"
+
+[tool.ruff]
+target-version = "py39"
+
+[tool.ruff.lint]
+extend-select = ["B", "I", "PGH", "RUF", "UP"]
